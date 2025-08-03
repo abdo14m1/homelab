@@ -11,7 +11,7 @@
 ## Key Components
 
 - **NVIDIA Device Plugin:** Exposes GPU resources to Kubernetes
-
+  
 ## Current State
 
 The cluster is configured with:
