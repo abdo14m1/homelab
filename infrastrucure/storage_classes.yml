@@ -1,0 +1,22 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-hdd
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: rancher.io/local-path
+parameters:
+  path: "/mnt/hdd"
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Delete
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-ssd
+provisioner: rancher.io/local-path
+parameters:
+  path: "/var/lib/rancher/k3s/storage"
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Delete
