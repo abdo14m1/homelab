@@ -1,0 +1,33 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nvidia-device-plugin
+  namespace: nvidia-device-plugin
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: nvidia-device-plugin
+      version: "1.*"
+      sourceRef:
+        kind: HelmRepository
+        name: nvdp
+        namespace: nvidia-device-plugin
+      interval: 12h
+  values:
+    # Enable GPU Feature Discovery (GFD)
+    gfd:
+      enabled: true
+    # Configure behavior on initialization errors
+    failOnInitError: true
+    # Set the desired strategy for exposing MIG devices
+    migStrategy: "none"
+    # Define resource requests and limits for the device plugin pod
+    resources:
+      requests:
+        cpu: 100m
+      limits:
+        memory: 512Mi
+    deviceDiscoveryStrategy: "nvml"
+    containerDriverRoot: "/usr"
+    runtimeClassName: "nvidia"
