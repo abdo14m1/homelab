@@ -18,4 +18,4 @@ spec:
 
   valuesFrom:
     - kind: ConfigMap
-      name: cilium-values
+      name: cilium-config
