@@ -5,3 +5,4 @@ resources:
   - nvidia-device-plugin
   - storage
   - external-dns
+  - cilium
