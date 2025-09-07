@@ -5,7 +5,6 @@ metadata:
   namespace: homepage
   labels:
     app.kubernetes.io/name: homepage
-  annotations:
 spec:
   type: ClusterIP
   ports:
@@ -29,9 +28,15 @@ metadata:
     gethomepage.dev/group: Cluster Management
     gethomepage.dev/icon: homepage.png
     gethomepage.dev/name: Homepage
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    external-dns.alpha.kubernetes.io/hostname: farag.tech
+
 spec:
-  rules:
-    - host: homelab.local
+  ingressClassName: cilium
+  tls:
+    - hosts:
+        - farag.tech
+      secretName: homepage-tls
       http:
         paths:
           - path: /
