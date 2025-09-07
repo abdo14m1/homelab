@@ -3,6 +3,14 @@ ipam:
 
 kubeProxyReplacement: true
 
+# K3s-specific configuration for proper service handling
+k8sServiceHost: 192.168.1.44
+k8sServicePort: 6443
+
+# Ensure proper API server connectivity
+k8s:
+  requireIPv4PodCIDR: true
+
 securityContext:
   capabilities:
     ciliumAgent:
