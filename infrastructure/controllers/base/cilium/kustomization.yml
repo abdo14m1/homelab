@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
   - release.yml
   - repo.yml
+  - announce.yml
+  - ip-pool.yml
