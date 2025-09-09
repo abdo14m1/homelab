@@ -12,3 +12,12 @@ spec:
     secretName: mealie-tls
   rules:
   - host: mealie.farag.tech
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mealie
+            port:
+              number: 80
