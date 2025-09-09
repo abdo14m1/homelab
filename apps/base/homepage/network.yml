@@ -37,6 +37,8 @@ spec:
     - hosts:
         - farag.tech
       secretName: homepage-tls
+  rules:
+    - host: farag.tech
       http:
         paths:
           - path: /
