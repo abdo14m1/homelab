@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mealie
+  namespace: mealie
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: mealie.farag.tech
+spec:
+  tls:
+  - hosts:
+    - mealie.farag.tech
+    secretName: mealie-tls
+  rules:
+  - host: mealie.farag.tech
