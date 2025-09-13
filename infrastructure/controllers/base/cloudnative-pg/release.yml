@@ -9,3 +9,9 @@ metadata:
       spec:
         chart: cloudnative-pg
         version: "0.*"
+        interval: 12h
+        sourceRef:
+          kind: HelmRepository
+          name: cnpg
+          namespace: cnpg-system
+        
