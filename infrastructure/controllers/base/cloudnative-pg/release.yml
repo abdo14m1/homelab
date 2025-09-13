@@ -3,15 +3,15 @@ kind: HelmRelease
 metadata:
   name: cnpg
   namespace: cnpg-system
-  spec:
-    interval: 30m
-    chart:
-      spec:
-        chart: cloudnative-pg
-        version: "0.*"
-        interval: 12h
-        sourceRef:
-          kind: HelmRepository
-          name: cnpg
-          namespace: cnpg-system
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: cloudnative-pg
+      version: "0.*"
+      interval: 12h
+      sourceRef:
+        kind: HelmRepository
+        name: cnpg
+        namespace: cnpg-system
         
