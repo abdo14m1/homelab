@@ -6,3 +6,4 @@ resources:
   - storage
   - external-dns
   - cilium
+  - cloudnative-pg
