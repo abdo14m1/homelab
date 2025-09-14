@@ -11,7 +11,7 @@ spec:
       database: mealie
       owner: mealie
       secret:
-        name: mealie-database-user
+        name: mealie-user
   storage:
     size: 2Gi
     storageClass: local-ssd
