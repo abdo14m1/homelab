@@ -5,3 +5,4 @@ resources:
   - network.yml
   - storage.yml
   - database.yml
+  - secrets.yml
