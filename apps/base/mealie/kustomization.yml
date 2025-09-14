@@ -4,5 +4,4 @@ resources:
   - deployment.yml
   - network.yml
   - storage.yml
-  - ingress.yml
   - database.yml
