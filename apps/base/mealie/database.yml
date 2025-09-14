@@ -1,0 +1,17 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: mealie
+  namespace: mealie
+spec:
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.19-minimal-bookworm
+  instances: 1
+  bootstrap:
+    initdb:
+      database: mealie
+      owner: mealie
+      secret:
+        name: mealie-secret
+  storage:
+    size: 2Gi
+    storageClass: local-ssd
