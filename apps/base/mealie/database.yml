@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: mealie
+  name: mealie-db
   namespace: mealie
 spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:14.19-minimal-bookworm
