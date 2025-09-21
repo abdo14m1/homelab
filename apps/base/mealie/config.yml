@@ -5,5 +5,5 @@ metadata:
   namespace: mealie
 data:
   DB_ENGINE: postgres
-  POSTGRES_SERVER: mealie-db-rw.mealie.svc.cluster.local
+  POSTGRES_SERVER: mealie-db-rw
   BASE_URL: https://mealie.example.com
