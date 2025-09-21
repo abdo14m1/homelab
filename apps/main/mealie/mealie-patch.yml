@@ -21,3 +21,11 @@ spec:
             name: mealie
             port:
               number: 80
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mealie-config
+  namespace: mealie
+data:
+  BASE_URL: https://mealie.farag.tech

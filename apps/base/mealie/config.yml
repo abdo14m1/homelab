@@ -6,3 +6,4 @@ metadata:
 data:
   DB_ENGINE: postgres
   POSTGRES_SERVER: mealie-db-rw
+  BASE_URL: https://mealie.example.com
