@@ -23,11 +23,19 @@ spec:
       containers:
         - image: ghcr.io/mealie-recipes/mealie:v3.1.2
           name: mealie
+          envFrom:
+          - configMapRef:
+              name: mealie-config
+          - name: POSTGRES_USER
+            secretKeyRef:
+              name: mealie-database-user
+              key: username
+          - name: POSTGRES_PASSWORD
+            secretKeyRef:
+              name: mealie-database-user
+              key: password
           ports:
             - containerPort: 9000
-          volumeMounts:
-            - mountPath: /app/data
-              name: mealie-data
           resources:
             requests:
               cpu: 250m
@@ -35,8 +43,3 @@ spec:
             limits:
               cpu: 500m
               memory: 1Gi
-      volumes:
-        - name: mealie-data
-          persistentVolumeClaim:
-            claimName: mealie-data
-

@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   - deployment.yml
   - network.yml
-  - storage.yml
   - database.yml
   - secrets.yml
+  - config.yml
