@@ -28,13 +28,15 @@ spec:
               name: mealie-config
           env:
           - name: POSTGRES_USER
-            secretKeyRef:
-              name: mealie-database-user
-              key: username
+            valueFrom:
+              secretKeyRef:
+                name: mealie-database-user
+                key: username
           - name: POSTGRES_PASSWORD
-            secretKeyRef:
-              name: mealie-database-user
-              key: password
+            valueFrom:
+              secretKeyRef:
+                name: mealie-database-user
+                key: password
           ports:
             - containerPort: 9000
           resources:
