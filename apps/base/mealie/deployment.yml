@@ -34,7 +34,7 @@ spec:
           - name: POSTGRES_PASSWORD
             secretKeyRef:
               name: mealie-database-user
-              key: password 
+              key: password
           ports:
             - containerPort: 9000
           resources:
