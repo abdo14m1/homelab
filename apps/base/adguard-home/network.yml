@@ -1,0 +1,71 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-adguard-home-dns-tcp
+spec:
+  type: NodePort
+  externalTrafficPolicy: Local
+  ports:
+  - port: 53
+    targetPort: 53
+    protocol: TCP
+    name: dns-tcp
+  selector:
+    app.kubernetes.io/name: adguard-home
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-adguard-home-dns-udp
+spec:
+  type: NodePort
+  externalTrafficPolicy: Local
+  ports:
+  - port: 53
+    targetPort: 53
+    protocol: UDP
+    name: dns-udp
+  selector:
+    app.kubernetes.io/name: adguard-home
+    app.kubernetes.io/instance: release-name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-adguard-home
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: http
+    protocol: TCP
+    name: http
+  selector:
+    app.kubernetes.io/name: adguard-home
+    app.kubernetes.io/instance: release-name
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    external-dns.alpha.kubernetes.io/hostname: adguard.farag.tech
+  name: adguard-home-ui
+spec:
+  ingressClassName: cilium
+  tls:
+  - hosts:
+    - adguard.farag.tech
+    secretName: adguard-home-ui-tls
+  rules:
+  - host: adguard.farag.tech
+    http:
+      paths:
+      - backend:
+          service:
+            name: release-name-adguard-home
+            port:
+              number: 3000
+        path: /
+        pathType: Exact
