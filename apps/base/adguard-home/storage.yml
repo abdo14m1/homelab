@@ -2,7 +2,9 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: adguard-home-config
+  namespace: adguard-home
 spec:
+  storageClassName: local-ssd
   accessModes:
     - "ReadWriteOnce"
   resources:
