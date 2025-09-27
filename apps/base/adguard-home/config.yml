@@ -51,7 +51,7 @@ data:
       - id.server
       - hostname.bind
       trusted_proxies:
-      - 0.0.0.0/0
+      - 127.0.0.0/8
       cache_size: 4194304
       cache_ttl_min: 0
       cache_ttl_max: 0
