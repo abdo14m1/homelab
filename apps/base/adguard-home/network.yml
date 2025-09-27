@@ -57,10 +57,10 @@ spec:
   - host: adguard.farag.tech
     http:
       paths:
-      - backend:
+      - path: /
+        pathType: Prefix
+        backend:
           service:
             name: release-name-adguard-home
             port:
-              number: 3000
-        path: /
-        pathType: Exact
+              umber: 3000
