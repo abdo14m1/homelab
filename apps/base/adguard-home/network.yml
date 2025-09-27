@@ -63,4 +63,4 @@ spec:
           service:
             name: release-name-adguard-home
             port:
-              umber: 3000
+              number: 3000
