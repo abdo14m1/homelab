@@ -34,7 +34,7 @@ data:
       safebrowsing_block_host: standard-block.dns.adguard.com
       ratelimit: 20
       ratelimit_whitelist: []
-      refuse_any: true
+      refuse_any: false
       upstream_dns:
       - https://dns10.quad9.net/dns-query
       upstream_dns_file: ""
