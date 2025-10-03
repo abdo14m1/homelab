@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: cowboysysop
-        namespace: cowboysysop
+        namespace: kroki 
       interval: 12h
   valuesFrom:
   - kind: ConfigMap
