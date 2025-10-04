@@ -4,3 +4,8 @@ namespace: twingate
 resources:
   - ./secret.yml
   - ../../base/twingate
+patches:
+  - path: ./twingate-release.yml
+    target:
+      kind: HelmRelease
+      name: twingate

@@ -14,3 +14,7 @@ spec:
         kind: HelmRepository
         name: twingate
         namespace: twingate
+  valuesFrom:
+  - kind: Secret
+    name: twingate-helm-values
+    valuesKey: values.yml
