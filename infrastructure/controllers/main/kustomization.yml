@@ -7,4 +7,4 @@ resources:
   - external-dns
   - cilium
   - cloudnative-pg
-  - cloudflare-tunnel
+  - twingate

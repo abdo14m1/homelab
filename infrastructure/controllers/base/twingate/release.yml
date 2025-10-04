@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: twingate
+  namespace: twingate
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: connector
+      version: "0.*"
+      interval: 12h
+      sourceRef:
+        kind: HelmRepository
+        name: twingate
+        namespace: twingate
+  valuesFrom:
+  - kind: Secret
+    name: twingate-helm-values
+    valuesKey: values.yml
