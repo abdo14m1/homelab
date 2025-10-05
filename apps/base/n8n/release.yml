@@ -14,3 +14,7 @@ spec:
         name: n8n
         namespace: n8n
       interval: 12h
+  valuesFrom:
+    - kind: ConfigMap
+      name: n8n-values
+      valuesKey: values.yml
