@@ -1,0 +1,24 @@
+main:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 512m
+      memory: 512Mi
+
+ingress:
+  enabled: true
+  className: cilium
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: mealie.farag.tech
+    cert-manager.io/cluster-issuer: letsencrypt-production
+  hosts:
+    - host: n8n.farag.tech
+      paths:
+        - path: /
+          pathType: prefix
+  tls:
+    - secretName: n8n-tls
+      hosts:
+      - n8n.farag.tech
