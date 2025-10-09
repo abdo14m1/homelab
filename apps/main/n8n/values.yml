@@ -17,7 +17,7 @@ ingress:
     - host: n8n.farag.tech
       paths:
         - path: /
-          pathType: prefix
+          pathType: Prefix
   tls:
     - secretName: n8n-tls
       hosts:
