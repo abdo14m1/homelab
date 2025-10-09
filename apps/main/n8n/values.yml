@@ -11,7 +11,7 @@ ingress:
   enabled: true
   className: cilium
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: mealie.farag.tech
+    external-dns.alpha.kubernetes.io/hostname: n8n.farag.tech
     cert-manager.io/cluster-issuer: letsencrypt-production
   hosts:
     - host: n8n.farag.tech
