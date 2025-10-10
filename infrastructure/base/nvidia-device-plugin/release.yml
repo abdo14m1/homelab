@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: nvidia-device-plugin
-  namespace: nvidia-device-plugin
+  namespace: nvidia
 spec:
   interval: 30m
   chart:
@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: nvdp
-        namespace: nvidia-device-plugin
+        namespace: nvidia
       interval: 12h
   values:
     # Enable GPU Feature Discovery (GFD)
