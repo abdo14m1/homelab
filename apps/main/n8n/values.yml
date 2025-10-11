@@ -26,6 +26,7 @@ ingress:
     - secretName: n8n-tls
       hosts:
       - n8n.farag.tech
+      - n8n-webhook.farag.tech
 
 webhook:
   url: https://n8n-webhook.farag.tech
