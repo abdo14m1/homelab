@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cloudflared-connector
-  namespace: n8n
+  namespace: n8n 
 spec:
   replicas: 1
   selector:
@@ -26,7 +26,7 @@ spec:
           mountPath: /etc/cloudflared/config
           readOnly: true
         - name: creds-volume
-          mountPath: /etc/cloudflared/creds
+          mountPath: /etc/cloudflared/creds/credentials.json
           readOnly: true
       volumes:
       - name: config-volume
