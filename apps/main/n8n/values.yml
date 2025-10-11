@@ -18,6 +18,10 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
+    - host: n8n-webhook.farag.tech
+      paths:
+        - path: /
+          pathType: Prefix
   tls:
     - secretName: n8n-tls
       hosts:
