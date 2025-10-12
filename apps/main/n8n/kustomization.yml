@@ -4,6 +4,7 @@ namespace: n8n
 resources:
 - namespace.yml
 - ../../base/n8n
+- database.yml
 - cloudflare.yml
 configMapGenerator:
   - name: n8n-values

@@ -1,0 +1,48 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+    name: n8n-db
+    namespace: mealie
+spec:
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.19-minimal-bookworm
+  instances: 1
+  bootstrap:
+    initdb:
+      database: n8n
+      owner: n8n
+      secret:
+        name: n8n-database-user
+  storage:
+    size: 2Gi
+    storageClass: local-ssd
+  managed:
+    services:
+      disabledDefaultServices:
+      - ro
+      - r
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: n8n-database-user
+  namespace: n8n
+type: kubernetes.io/basic-auth
+stringData:
+  username: ENC[AES256_GCM,data:PZkc,iv:Utez0kwk85gV0/CE3j54eJZ8IeinrezO3nCxUrAn06A=,tag:fW2StiS3TmI42y41BmD2RA==,type:str]
+  password: ENC[AES256_GCM,data:XQBvUUww9Kyhpr1fjlKK3g==,iv:+pZeHhcCJXAPH8CZzEuWunsKVuxw9ViocTMmCHRwjTU=,tag:9ie3FIoVmudKT+MqgogEqQ==,type:str]
+  postgres-password: ENC[AES256_GCM,data:V4zFYuYKUjq32kczDyKapQ==,iv:R/HtvKvxNLpa/aXYo+voXtkH1HCKjsZZFGRkCVuIwDA=,tag:Ez2kMImsv+akRasfQt8gMw==,type:str]
+sops:
+  age:
+  - recipient: age1xk7pj4s5ctcl906zvdnqdpqvgankk5a990mcexwevzkcptvlvq7qzrss9s
+    enc: |
+      -----BEGIN AGE ENCRYPTED FILE-----
+      YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA4QklXN1NzaGczYTdJWU1r
+      Y1F0SHFHRjhaVnJQeUtFdU5DZ3ZnM20zeDBzCndpaUJ4NFNxbG9xWDBUZkxLQTdZ
+      UEU5S1JsS2VxZldhTVMvK2VwZVZ3Zm8KLS0tIGRWcVUwdUM2dGpSUExOdDVsTHox
+      cEVDWVlMV3JCWG9TUWM3KzBlcmd2dUUKoyarh1jOgWakNkYbxxUV8SuL6OCuJAkc
+      I75V33KdacktLuleb67EuEXw9Z42sXv3Kpc6ROiVmgSE7G4B94feog==
+      -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-10-12T02:08:08Z"
+  mac: ENC[AES256_GCM,data:AT5OWMGczdyzjY/iECRuzmlnWbWBuyibgV6axJOgGfuFnGt0Uy3I+hnkx4FyXHj2ZiViX9RPGneBU/QlPC5pK6SjvWuT4w+0khTnBQxg15456n08+dhj3+4jQCVUT2YJKmnMgWcZQqIR9YejGd2WzgL0ZVAVsW+j7sGOd7SYS9Y=,iv:wQqQv7kmoRqkIx688rF6vDditagoDvoJhDJkSWBCyfc=,tag:b0oCvvQ5bYocUcqhWt6/zA==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  version: 3.10.2
