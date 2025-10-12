@@ -11,7 +11,7 @@ spec:
       database: n8n
       owner: n8n
       secret:
-        name: n8n-database-user
+        name: n8n-database-creds
   storage:
     size: 2Gi
     storageClass: local-ssd
@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: n8n-database-user
+  name: n8n-database-creds
   namespace: n8n
 type: kubernetes.io/basic-auth
 stringData:
