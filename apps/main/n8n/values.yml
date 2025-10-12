@@ -42,7 +42,7 @@ externalPostgresql:
   host: n8n-db-rw
   database: n8n
   username: n8n
-  existingSecret: n8n-database-creds
+  existingSecret: n8n-database-password
 
 webhook:
   url: https://n8n-webhook.farag.tech

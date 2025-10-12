@@ -1,62 +1,71 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-    name: n8n-db
-    namespace: n8n
+  name: n8n-db
+  namespace: n8n
 spec:
-    imageName: ghcr.io/cloudnative-pg/postgresql:14.19-minimal-bookworm
-    instances: 1
-    bootstrap:
-        initdb:
-            database: n8n
-            owner: n8n
-            secret:
-                name: n8n-database-creds
-    storage:
-        size: 2Gi
-        storageClass: local-ssd
-    managed:
-        services:
-            disabledDefaultServices:
-                - ro
-                - r
-sops:
-    age:
-        - recipient: age1xk7pj4s5ctcl906zvdnqdpqvgankk5a990mcexwevzkcptvlvq7qzrss9s
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1UzUrV2xxVWU1UXhoaVVH
-            QThFWXdCdDVXVUpqQjN3Q0xhN2VEc3NVblNNCmJON0NicmtlbGdFNlIzQXNNY2dG
-            VHFzRnQ5eEtKWlFOWXE3eTNwUGt1Zk0KLS0tIG0xZ1RqSlVOLzZ5R2hXSHhRSXJH
-            VDZ6M0k5NUkySE5QYmpBaWNQSUdwVUEKTfF02zktOeiMU+Un8Ypn79t5icvIg268
-            UkWG+41P8Uw6OBUBjRQ7MqcD0eYXkI5p6YQsewfgAo1miun/gE2GVQ==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-10-12T02:51:06Z"
-    mac: ENC[AES256_GCM,data:b+w3d3Y3IsQFwnUGPseSgzevOZru9603pYVoc06JhgluDK7n75BFK8FVoFSpEu1UE2uASUiOTphC4zxsSRTnwfFuZJVijITIcpA/eBuH6wlboSqHp+9FdOkdaiHz5Xzilo52rUS8OjOvhu2rlHYAtr5JMSdGju3dsrVUeQxN4bc=,iv:xA1dGsCav2BdOA9XV8ezXcAlEpIYZEtkYmIw+VBPyOQ=,tag:Zt0c23bjA1DiiE1UEIN1oA==,type:str]
-    encrypted_regex: ^(data|stringData)$
-    version: 3.10.2
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.19-minimal-bookworm
+  instances: 1
+  bootstrap:
+    initdb:
+      database: n8n
+      owner: n8n
+      secret:
+        name: n8n-database-creds
+  storage:
+    size: 2Gi
+    storageClass: local-ssd
+  managed:
+    services:
+      disabledDefaultServices:
+      - ro
+      - r
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-    name: n8n-database-creds
-    namespace: n8n
+  name: n8n-database-creds
+  namespace: n8n
 type: kubernetes.io/basic-auth
 stringData:
-    username: ENC[AES256_GCM,data:J350,iv:felIpsRjGXpxNM0bDrHYC2Ajxiaepf8Vsw5T/QKQrcM=,tag:XL3jqxCq/38mJx7C+5ITEQ==,type:str]
-    password: ENC[AES256_GCM,data:otbu9bfCZWuAFwkZsvCv5Q==,iv:LBP3KEa/mOk2/0pIOYxYHQK9lVDlar8I91+OmZgqv8Y=,tag:F98oaBc913E7m1HOiNmqow==,type:str]
+  username: ENC[AES256_GCM,data:1PND,iv:D9NHaKpwUvBWYuZq8KsKvb3RRuYPkdKWkCRioMcyY1I=,tag:ROAep+5v1r8dHDH7jwVR0w==,type:str]
+  password: ENC[AES256_GCM,data:GOR+LmfxXRIH43ehP2TrAQ==,iv:RZu6CZMMAc2AzETIYTduZ8txakPRmqME3mojwZXSk9w=,tag:DbsDFtWOltQI2K2JL11jEQ==,type:str]
 sops:
-    age:
-        - recipient: age1xk7pj4s5ctcl906zvdnqdpqvgankk5a990mcexwevzkcptvlvq7qzrss9s
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1UzUrV2xxVWU1UXhoaVVH
-            QThFWXdCdDVXVUpqQjN3Q0xhN2VEc3NVblNNCmJON0NicmtlbGdFNlIzQXNNY2dG
-            VHFzRnQ5eEtKWlFOWXE3eTNwUGt1Zk0KLS0tIG0xZ1RqSlVOLzZ5R2hXSHhRSXJH
-            VDZ6M0k5NUkySE5QYmpBaWNQSUdwVUEKTfF02zktOeiMU+Un8Ypn79t5icvIg268
-            UkWG+41P8Uw6OBUBjRQ7MqcD0eYXkI5p6YQsewfgAo1miun/gE2GVQ==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-10-12T02:51:06Z"
-    mac: ENC[AES256_GCM,data:b+w3d3Y3IsQFwnUGPseSgzevOZru9603pYVoc06JhgluDK7n75BFK8FVoFSpEu1UE2uASUiOTphC4zxsSRTnwfFuZJVijITIcpA/eBuH6wlboSqHp+9FdOkdaiHz5Xzilo52rUS8OjOvhu2rlHYAtr5JMSdGju3dsrVUeQxN4bc=,iv:xA1dGsCav2BdOA9XV8ezXcAlEpIYZEtkYmIw+VBPyOQ=,tag:Zt0c23bjA1DiiE1UEIN1oA==,type:str]
-    encrypted_regex: ^(data|stringData)$
-    version: 3.10.2
+  age:
+  - recipient: age1xk7pj4s5ctcl906zvdnqdpqvgankk5a990mcexwevzkcptvlvq7qzrss9s
+    enc: |
+      -----BEGIN AGE ENCRYPTED FILE-----
+      YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBQVUxSUGpTdjhWeUQyR3lH
+      UnVHb1hmYWxodlZzcnhwcmR5TEd1T09Db0JNCjR4TzdaM0l2RFcxcEgwMkxpYXNF
+      WkQ3cVl6SVBRZGpyM0ZJWWdDZE9RRUkKLS0tIHd5c1l6a2FLSUhXOTRORFU4NERs
+      SWxBN00yMW5ncW1UZGxsNFlONmVldHMKJ/gSUQaI0FleRUYdqRItlC+SxdLKwIk5
+      SrQbc8P1AC8GquTmbcAOTXPK1Q4WflqOqWv08FmL4dfX2iRsS8TvPQ==
+      -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-10-12T04:02:39Z"
+  mac: ENC[AES256_GCM,data:1sdhrtIZEaMMxuJSGdXSefwyRCs5n5f9E19Mj2XeXNe9VAuJV2vh/EQP0ru+ZWX+bJDpV8cLpBUZTaeeIPeqvihfvzDxlcsZoeH+uqa2J/wAmruoPgmj0D5ekrZPacBce6oRn1C+8fGi13/wJ2HFcgwBGfNM1ThBUP8KXZw44GI=,iv:xMYKeIR2YTh7FJVrjYW/5wBXSpKdlXUhxS/OHjsHh1o=,tag:NJQUsr3Ydz28Q88BGIqkZg==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  version: 3.10.2
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: n8n-database-password
+  namespace: n8n
+type: kubernetes.io/basic-auth
+stringData:
+  postgres-password: ENC[AES256_GCM,data:2e83o1u+8Q6Zv/dBH1QXiA==,iv:PcRHTV2nPRXPVA90VmK7ee8gLzOG9yiGTvwW4pXOEUM=,tag:MwBpPhedPOER2bpe1ORMzA==,type:str]
+sops:
+  age:
+  - recipient: age1xk7pj4s5ctcl906zvdnqdpqvgankk5a990mcexwevzkcptvlvq7qzrss9s
+    enc: |
+      -----BEGIN AGE ENCRYPTED FILE-----
+      YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBQVUxSUGpTdjhWeUQyR3lH
+      UnVHb1hmYWxodlZzcnhwcmR5TEd1T09Db0JNCjR4TzdaM0l2RFcxcEgwMkxpYXNF
+      WkQ3cVl6SVBRZGpyM0ZJWWdDZE9RRUkKLS0tIHd5c1l6a2FLSUhXOTRORFU4NERs
+      SWxBN00yMW5ncW1UZGxsNFlONmVldHMKJ/gSUQaI0FleRUYdqRItlC+SxdLKwIk5
+      SrQbc8P1AC8GquTmbcAOTXPK1Q4WflqOqWv08FmL4dfX2iRsS8TvPQ==
+      -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-10-12T04:02:39Z"
+  mac: ENC[AES256_GCM,data:1sdhrtIZEaMMxuJSGdXSefwyRCs5n5f9E19Mj2XeXNe9VAuJV2vh/EQP0ru+ZWX+bJDpV8cLpBUZTaeeIPeqvihfvzDxlcsZoeH+uqa2J/wAmruoPgmj0D5ekrZPacBce6oRn1C+8fGi13/wJ2HFcgwBGfNM1ThBUP8KXZw44GI=,iv:xMYKeIR2YTh7FJVrjYW/5wBXSpKdlXUhxS/OHjsHh1o=,tag:NJQUsr3Ydz28Q88BGIqkZg==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  version: 3.10.2
