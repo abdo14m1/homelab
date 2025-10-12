@@ -1,0 +1,47 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: n8n-db
+  namespace: mealie
+spec:
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.19-minimal-bookworm
+  instances: 1
+  bootstrap:
+    initdb:
+      database: n8n
+      owner: n8n
+      secret:
+        name: n8n-database-user
+  storage:
+    size: 2Gi
+    storageClass: local-ssd
+  managed:
+    services:
+      disabledDefaultServices:
+      - ro
+      - r
+---
+apiVersion: v1
+kind: Secret
+metadata:
+    name: n8n-database-user
+    namespace: n8n
+type: kubernetes.io/basic-auth
+stringData:
+    username: ENC[AES256_GCM,data:j0Dn,iv:eJJxas1yWZBZ3G7fTjSMWmjS8xSgbxH9HLNkt7oAXqI=,tag:SBdl/V4fGWgXRgyLYmdzbg==,type:str]
+    password: ENC[AES256_GCM,data:x26G30PK4pcfispUFjhQUQ==,iv:XLqbIc4iPH8LbYu0vqIwq5vj3jYYgMFj+ypbwbzfQrk=,tag:M6ZXZKwITxx3EXb1r3/RJQ==,type:str]
+sops:
+  age:
+  - recipient: age1xk7pj4s5ctcl906zvdnqdpqvgankk5a990mcexwevzkcptvlvq7qzrss9s
+    enc: |
+      -----BEGIN AGE ENCRYPTED FILE-----
+      YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBsMjBDZHM3NjhCWFRGbjVn
+      QzNoYlVXVkdocnUwVFpqSXg0eVBOakVtSnowCmxsWERDL0FGbSt0MXpkTGQvNVVG
+      NDBIM1JqYkZhaUlJSlpYcUFpOEpwOHMKLS0tIGlERlE1WS9NT21tb3RyZVIvVmRz
+      VytMRU1BRmVwTU4yRklsYlFXaFVDL2sKErz01wTbB5Gr7e34Puu5llTeh0Pjkczc
+      5SbOob1HN8Gc/x2gXOxhcia85iD9dbbWGqAaDuChUujd/WBsYTBEFw==
+      -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-10-12T00:59:06Z"
+  mac: ENC[AES256_GCM,data:sXac/UhrkjvEJLVSnAfFSqwa5DugIvzF8ALxMpXGcwFjeJAhgw3FuSMuHwTg4m4atoht3BSknjZEJ8N+XFeaz9NPkCeBqK4Pp3Uerq5w8H3ZSTyc8sGD67djAdNj/Fv7ya0377IZ/fdRG/3BPUu02SU19GL48n4+yuM0PuzT7YY=,iv:+miUjqqaEieynIO+fo6PiKd/YNP/mT7cWoHthQGahCs=,tag:/Cc1lh69Lkac8Ne3SEH7Ag==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  version: 3.10.2
