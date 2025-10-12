@@ -2,7 +2,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
     name: n8n-db
-    namespace: mealie
+    namespace: n8n
 spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:14.19-minimal-bookworm
   instances: 1
