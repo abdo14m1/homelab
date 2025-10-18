@@ -42,4 +42,6 @@ spec:
         gateway:
           ingressGateway:
             enableGatewayApi: true
+            className: cilium
+            createGateway: true
             kserveGateway: ai-models/kserve-ingress-gateway
