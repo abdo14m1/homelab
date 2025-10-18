@@ -1,0 +1,8 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: whisper-turbo
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/hostname: whisper-internal.farag.tech
+    kubernetes.io/ingress.class: cilium

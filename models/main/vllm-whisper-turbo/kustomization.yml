@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+ - namespace.yml
+  - ../../base/vllm-whisper-turbo
+namespace: ai-models
+patches:
+  - path: isvc-patch.yml
+    target:
+      name: whisper-turbo
+      kind: InferenceService
