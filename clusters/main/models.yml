@@ -8,7 +8,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: "./models"
+  path: "./models/main"
   prune: true
   timeout: 1m
   decryption:
