@@ -1,8 +1,0 @@
-# infrastructure/kserve/crds/kustomization.yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-helmCharts:
-- name: kserve-crd
-  repo: oci://ghcr.io/kserve/charts
-  version: v0.15.0
-  releaseName: kserve-crd

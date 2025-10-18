@@ -1,0 +1,45 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kserve-crds
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kserve-crd
+      version: v0.15.0
+      sourceRef:
+        kind: HelmRepository
+        name: kserve-charts
+      interval: 1m
+  targetNamespace: ai-models
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kserve-controller
+spec:
+  interval: 5m
+  dependsOn:
+    - name: kserve-crds
+  chart:
+    spec:
+      chart: kserve
+      version: v0.15.0
+      sourceRef:
+        kind: HelmRepository
+        name: kserve-charts
+      interval: 1m
+  targetNamespace: ai-models
+  values:
+    kserve:
+      controller:
+        deploymentMode: Standard
+        gateway:
+          ingressGateway:
+            enableGatewayApi: true
+            kserveGateway: ai-models/kserve-ingress-gateway
