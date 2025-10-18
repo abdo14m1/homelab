@@ -68,4 +68,6 @@ ingressController:
   service:
     annotations:
       io.cilium/lb-ipam-ips: 192.168.1.240
-  
+
+gatewayAPI:
+  enabled: true
