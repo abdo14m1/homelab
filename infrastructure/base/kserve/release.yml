@@ -38,7 +38,7 @@ spec:
   values:
     kserve:
       controller:
-        deploymentMode: Standard
+        deploymentMode: RawDeployment
         gateway:
           ingressGateway:
             enableGatewayApi: true
