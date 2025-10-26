@@ -1,4 +1,4 @@
-apiVersion: "serving.kserve.io/v1beta1"
+apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
   name: whisper-turbo
@@ -6,9 +6,9 @@ metadata:
     serving.kserve.io/deploymentMode: RawDeployment
 spec:
   predictor:
-    containers:
+    container:
       - name: kserve-container
-        image: vllm/vllm-openai:nightly-7c572544e4292cb97e2f4f5a68c43f02406ad1d6
+        image: vllm/vllm-openai:nightly
         args:
           - "--host=0.0.0.0"
           - "--port=8080"
