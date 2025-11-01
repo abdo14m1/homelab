@@ -6,7 +6,7 @@ metadata:
     serving.kserve.io/deploymentMode: RawDeployment
 spec:
   predictor:
-    container:
+    containers:
       - name: kserve-container
         image: vllm/vllm-openai:nightly
         args:
