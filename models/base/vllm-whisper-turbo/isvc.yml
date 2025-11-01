@@ -1,50 +1,50 @@
-# apiVersion: serving.kserve.io/v1beta1
-# kind: InferenceService
-# metadata:
-#   name: whisper-turbo
-#   annotations:
-#     serving.kserve.io/deploymentMode: RawDeployment
-# spec:
-#   predictor:
-#     maxReplicas: 0
-#     minReplicas: 0
-#     containers:
-#       - name: kserve-container
-#         image: vllm/vllm-openai:nightly
-#         args:
-#           - "--host=0.0.0.0"
-#           - "--port=8080"
-#           - "--model=openai/whisper-large-v3-turbo"
-#           - "--engine-use-ray"
-#           - "--trust-remote-code"
-#         env:
-#           - name: HF_HOME
-#             value: /mnt/models
-#         volumeMounts:
-#           - name: model-cache-storage
-#             mountPath: /mnt/models
-#         ports:
-#           - containerPort: 8080
-#             protocol: TCP
-#         startupProbe:
-#           tcpSocket:
-#             port: 8080
-#           initialDelaySeconds: 200
-#           periodSeconds: 10
-#           failureThreshold: 100
-#         readinessProbe:
-#           tcpSocket:
-#             port: 8080
-#           initialDelaySeconds: 200
-#           periodSeconds: 10
-#           timeoutSeconds: 5
-#           failureThreshold: 3
-#         resources:
-#           requests:
-#             nvidia.com/gpu: 1
-#           limits:
-#             nvidia.com/gpu: 1
-#     volumes:
-#       - name: model-cache-storage
-#         persistentVolumeClaim:
-#           claimName: model-cache-pvc
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: whisper-turbo
+  annotations:
+    serving.kserve.io/deploymentMode: RawDeployment
+spec:
+  predictor:
+    maxReplicas: 0
+    minReplicas: 0
+    containers:
+      - name: kserve-container
+        image: vllm/vllm-openai:nightly
+        args:
+          - "--host=0.0.0.0"
+          - "--port=8080"
+          - "--model=openai/whisper-large-v3-turbo"
+          - "--engine-use-ray"
+          - "--trust-remote-code"
+        env:
+          - name: HF_HOME
+            value: /mnt/models
+        volumeMounts:
+          - name: model-cache-storage
+            mountPath: /mnt/models
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+        startupProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 200
+          periodSeconds: 10
+          failureThreshold: 100
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 200
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        resources:
+          requests:
+            nvidia.com/gpu: 1
+          limits:
+            nvidia.com/gpu: 1
+    volumes:
+      - name: model-cache-storage
+        persistentVolumeClaim:
+          claimName: model-cache-pvc
