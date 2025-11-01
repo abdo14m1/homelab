@@ -24,6 +24,19 @@ spec:
         ports:
           - containerPort: 8080
             protocol: TCP
+        startupProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 200
+          periodSeconds: 10
+          failureThreshold: 100
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 200
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
         resources:
           requests:
             nvidia.com/gpu: 1
