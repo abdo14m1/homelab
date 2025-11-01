@@ -6,6 +6,8 @@ metadata:
     serving.kserve.io/deploymentMode: RawDeployment
 spec:
   predictor:
+    maxReplicas: 1
+    minReplicas: 1
     containers:
       - name: kserve-container
         image: vllm/vllm-openai:nightly
