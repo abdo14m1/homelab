@@ -6,8 +6,8 @@ metadata:
     serving.kserve.io/deploymentMode: RawDeployment
 spec:
   predictor:
-    maxReplicas: 0
-    minReplicas: 0
+    maxReplicas: 1
+    minReplicas: 1
     containers:
       - name: kserve-container
         image: vllm/vllm-openai:nightly
@@ -29,13 +29,13 @@ spec:
         startupProbe:
           tcpSocket:
             port: 8080
-          initialDelaySeconds: 200
+          initialDelaySeconds: 50
           periodSeconds: 10
-          failureThreshold: 100
+          failureThreshold: 10
         readinessProbe:
           tcpSocket:
             port: 8080
-          initialDelaySeconds: 200
+          initialDelaySeconds: 50
           periodSeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
