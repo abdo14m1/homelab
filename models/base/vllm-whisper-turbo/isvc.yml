@@ -6,7 +6,8 @@ metadata:
     serving.kserve.io/deploymentMode: RawDeployment
 spec:
   predictor:
-    runtimeClass: nvidia
+    
+    runtimeClassName: nvidia
     maxReplicas: 1
     minReplicas: 1
     containers:
