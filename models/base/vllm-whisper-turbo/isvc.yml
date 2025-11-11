@@ -17,7 +17,6 @@ spec:
           - "--host=0.0.0.0"
           - "--port=8080"
           - "--model=openai/whisper-large-v3-turbo"
-          - "--engine-use-ray"
           - "--trust-remote-code"
         env:
           - name: HF_HOME
