@@ -3,7 +3,8 @@ kind: Kustomization
 bases:
   - ../../base/vllm-whisper-turbo
 resources:
- - namespace.yml
+  - namespace.yml
+  - secret.yml
 namespace: ai-models
 patches:
   - path: isvc-patch.yml
