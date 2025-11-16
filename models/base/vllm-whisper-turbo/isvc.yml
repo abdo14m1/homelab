@@ -14,12 +14,6 @@ spec:
         - --model_id=openai/whisper-large-v3-turbo
         - --backend=vllm
         - --dtype=float16
-      env:
-        - name: HF_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: hf-token-secret
-              key: hf_token
     resources:
       requests:
         cpu: "2"
