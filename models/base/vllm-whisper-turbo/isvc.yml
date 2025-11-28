@@ -5,8 +5,8 @@ metadata:
   namespace: ai-models
 spec:
   predictor:
-    minReplicas: 1
-    maxReplicas: 1
+    minReplicas: 0
+    maxReplicas: 0
     model:
       modelFormat:
         name: huggingface
@@ -23,7 +23,7 @@ spec:
     resources:
       requests:
         cpu: "2"
-        memory: "5Gi"
+        memory: "8Gi"
         nvidia.com/gpu: "1"
       limits:
         cpu: "4"
