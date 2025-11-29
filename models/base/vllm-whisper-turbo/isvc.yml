@@ -14,18 +14,19 @@ spec:
         - --model_id=openai/whisper-large-v3-turbo
         - --backend=vllm
         - --dtype=float16
+        - --gpu-memory-utilization=0.9 # Recommended for vLLM to avoid OOM
       env:
         - name: HF_TOKEN
           valueFrom:
             secretKeyRef:
               name: hf-token-secret
               key: hf_token
-    resources:
-      requests:
-        cpu: "2"
-        memory: "5Gi"
-        nvidia.com/gpu: "1"
-      limits:
-        cpu: "4"
-        memory: "12Gi"
-        nvidia.com/gpu: "1"
+      resources:
+        requests:
+          cpu: "2"
+          memory: "8Gi"   # Bumped up slightly for safety
+          nvidia.com/gpu: "1"
+        limits:
+          cpu: "4"
+          memory: "16Gi"  # Whisper Large needs significant RAM for weight loading
+          nvidia.com/gpu: "1"
