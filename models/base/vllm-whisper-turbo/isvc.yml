@@ -6,28 +6,55 @@ metadata:
 spec:
   predictor:
     runtimeClassName: nvidia
-    minReplicas: 1    
-    maxReplicas: 1
+    minReplicas: 1
     model:
       modelFormat:
         name: huggingface
+      storageUri: "pvc://whisper-model-pvc/whisper-large-v3-turbo"
       args:
-        - --model_id=openai/whisper-large-v3-turbo
+        - --model_id=/mnt/models
         - --backend=vllm
         - --dtype=float16
-        - --gpu-memory-utilization=0.9 # Recommended for vLLM to avoid OOM
-      env:
-        - name: HF_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: hf-token-secret
-              key: hf_token
+        - --gpu-memory-utilization=0.9
       resources:
         requests:
           cpu: "2"
-          memory: "8Gi"   # Bumped up slightly for safety
+          memory: "8Gi"
           nvidia.com/gpu: "1"
         limits:
           cpu: "4"
-          memory: "16Gi"  # Whisper Large needs significant RAM for weight loading
+          memory: "16Gi"
           nvidia.com/gpu: "1"
+    initContainers:
+      - name: model-downloader
+        image: python:3.10-slim
+        env:
+          - name: HF_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: hf-token-secret
+                key: hf_token
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            # Check if model file exists. If yes, skip download.
+            if [ -f "/data/whisper-large-v3-turbo/config.json" ]; then
+              echo "Model found! Skipping download."
+            else
+              echo "Model not found. Downloading..."
+              pip install huggingface_hub
+              huggingface-cli download openai/whisper-large-v3-turbo \
+                --local-dir /data/whisper-large-v3-turbo \
+                --local-dir-use-symlinks False
+            fi
+        volumeMounts:
+          - name: model-volume
+            mountPath: "/data"
+        resources:
+          requests:
+            cpu: "1"
+            memory: "2Gi"
+    volumes:
+      - name: model-volume
+        persistentVolumeClaim:
+          claimName: whisper-model-pvc
