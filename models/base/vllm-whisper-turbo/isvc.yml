@@ -5,6 +5,7 @@ metadata:
   namespace: ai-models
 spec:
   predictor:
+    runtimeClassName: nvidia
     minReplicas: 1    
     maxReplicas: 1
     model:
