@@ -25,35 +25,6 @@ spec:
           cpu: "4"
           memory: "16Gi"
           nvidia.com/gpu: "1"
-    initContainers:
-      - name: model-downloader
-        image: python:3.10-slim
-        env:
-          - name: HF_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: hf-token-secret
-                key: hf_token
-        command: ["/bin/sh", "-c"]
-        args:
-          - |
-            # Check if model file exists. If yes, skip download.
-            if [ -f "/data/whisper-large-v3-turbo/config.json" ]; then
-              echo "Model found! Skipping download."
-            else
-              echo "Model not found. Downloading..."
-              pip install huggingface_hub
-              huggingface-cli download openai/whisper-large-v3-turbo \
-                --local-dir /data/whisper-large-v3-turbo \
-                --local-dir-use-symlinks False
-            fi
-        volumeMounts:
-          - name: model-volume
-            mountPath: "/data"
-        resources:
-          requests:
-            cpu: "1"
-            memory: "2Gi"
     volumes:
       - name: model-volume
         persistentVolumeClaim:
