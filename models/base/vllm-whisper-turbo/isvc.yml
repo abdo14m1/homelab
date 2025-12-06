@@ -15,7 +15,6 @@ spec:
         - --model_id=/mnt/models
         - --backend=huggingface
         - --dtype=float16
-        - --task=automatic-speech-recognition
       resources:
         requests:
           cpu: "2"
