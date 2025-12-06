@@ -2,14 +2,36 @@ apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
   name: whisper-turbo
+  annotations:
+    serving.kserve.io/deploymentMode: RawDeployment
 spec:
   predictor:
-    model:
-      modelFormat:
-        name: vllm
-      runtime: whisper-vllm-runtime
     containers:
       - name: kserve-container
+        image: vllm/vllm-openai:nightly
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+        env:
+          - name: PORT
+            value: "8080"
+        args:
+          - "--model"
+          - "/mnt/models"
+          - "--task"
+          - "transcription"
+          - "--trust-remote-code"
+          - "--gpu-memory-utilization"
+          - "0.9"
+        resources:
+          limits:
+            cpu: "4"
+            memory: "16Gi"
+            nvidia.com/gpu: "1"
+          requests:
+            cpu: "2"
+            memory: "8Gi"
+            nvidia.com/gpu: "1"
         volumeMounts:
           - name: model-volume
             mountPath: /mnt/models
