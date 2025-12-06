@@ -16,6 +16,7 @@ spec:
         - --backend=vllm
         - --dtype=float16
         - --gpu-memory-utilization=0.9
+        - --tokenizer-mode=slow
       resources:
         requests:
           cpu: "2"
