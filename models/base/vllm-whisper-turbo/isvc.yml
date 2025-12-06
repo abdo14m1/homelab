@@ -2,28 +2,18 @@ apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
   name: whisper-turbo
-  namespace: ai-models
 spec:
   predictor:
-    runtimeClassName: nvidia
-    minReplicas: 1
     model:
       modelFormat:
-        name: huggingface
-      storageUri: "pvc://whisper-model-pvc/whisper-large-v3-turbo"
-      args:
-        - --model_id=/mnt/models
-        - --backend=huggingface
-        - --dtype=float16
-      resources:
-        requests:
-          cpu: "2"
-          memory: "8Gi"
-          nvidia.com/gpu: "1"
-        limits:
-          cpu: "4"
-          memory: "16Gi"
-          nvidia.com/gpu: "1"
+        name: vllm
+      runtime: whisper-vllm-runtime
+    containers:
+      - name: kserve-container
+        volumeMounts:
+          - name: model-volume
+            mountPath: /mnt/models
+            readOnly: true
     volumes:
       - name: model-volume
         persistentVolumeClaim:
