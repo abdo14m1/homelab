@@ -13,11 +13,9 @@ spec:
       storageUri: "pvc://whisper-model-pvc/whisper-large-v3-turbo"
       args:
         - --model_id=/mnt/models
-        - --backend=vllm
+        - --backend=huggingface
         - --dtype=float16
-        - --gpu-memory-utilization=0.9
-        - --tokenizer-mode=slow
-        - --enforce-eager
+        - --task=automatic-speech-recognition
       resources:
         requests:
           cpu: "2"
