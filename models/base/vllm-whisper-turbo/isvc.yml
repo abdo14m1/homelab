@@ -17,6 +17,7 @@ spec:
         - --dtype=float16
         - --gpu-memory-utilization=0.9
         - --tokenizer-mode=slow
+        - --enforce-eager
       resources:
         requests:
           cpu: "2"
