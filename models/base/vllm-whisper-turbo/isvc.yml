@@ -6,6 +6,7 @@ metadata:
     serving.kserve.io/deploymentMode: RawDeployment
 spec:
   predictor:
+    runtimeClassName: nvidia
     containers:
       - name: kserve-container
         image: vllm/vllm-openai:nightly
