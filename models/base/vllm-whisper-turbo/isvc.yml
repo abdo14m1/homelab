@@ -9,20 +9,20 @@ spec:
     runtimeClassName: nvidia
     containers:
       - name: kserve-container
-        image: fedirz/faster-whisper-server:cuda
+        image: fedirz/faster-whisper-server:sha-307e23f-cuda
         ports:
           - containerPort: 8000
             protocol: TCP
         env:
           - name: PORT
             value: "8000"
-          # This will now successfully download to the freed-up PVC
-          - name: WHISPER_MODEL
-            value: "deepdml/faster-whisper-large-v3-turbo-ct2"
-          - name: WHISPER_COMPUTE_TYPE
-            value: "int8"
-          - name: WHISPER_DEVICE
-            value: "cuda"
+          - name: WHISPER__MODEL
+            value: "Systran/faster-whisper-large-v3"
+          - name: HUGGING_FACE_HUB_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: hf-token-secret
+                key: hf_token
         resources:
           limits:
             cpu: "2"
@@ -34,7 +34,7 @@ spec:
             nvidia.com/gpu: "1"
         volumeMounts:
           - name: model-volume
-            mountPath: /root/.cache/huggingface
+            mountPath: /home/ubuntu/.cache/huggingface
     volumes:
       - name: model-volume
         persistentVolumeClaim:
