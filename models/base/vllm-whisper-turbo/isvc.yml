@@ -21,8 +21,6 @@ spec:
         args:
           - "--model"
           - "/mnt/models/whisper-large-v3-turbo"
-          - "--task"
-          - "transcription"
           - "--trust-remote-code"
           - "--gpu-memory-utilization"
           - "0.95"
