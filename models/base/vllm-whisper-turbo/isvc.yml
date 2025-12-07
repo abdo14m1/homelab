@@ -9,38 +9,32 @@ spec:
     runtimeClassName: nvidia
     containers:
       - name: kserve-container
-        image: vllm/vllm-openai:v0.6.4.post1
+        image: fedirz/faster-whisper-server:cuda
         ports:
-          - containerPort: 8080
+          - containerPort: 8000
             protocol: TCP
         env:
           - name: PORT
-            value: "8080"
-          - name: VLLM_ATTENTION_BACKEND
-            value: "xformers"
-        args:
-          - "--model"
-          - "/mnt/models/whisper-large-v3-turbo"
-          - "--trust-remote-code"
-          - "--gpu-memory-utilization"
-          - "0.95"
-          - "--dtype"
-          - "float16"
-          - "--max-model-len"
-          - "448"
+            value: "8000"
+          # This will now successfully download to the freed-up PVC
+          - name: WHISPER_MODEL
+            value: "deepdml/faster-whisper-large-v3-turbo-ct2"
+          - name: WHISPER_COMPUTE_TYPE
+            value: "int8"
+          - name: WHISPER_DEVICE
+            value: "cuda"
         resources:
           limits:
-            cpu: "4"
-            memory: "16Gi"
+            cpu: "2"
+            memory: "6Gi"
             nvidia.com/gpu: "1"
           requests:
-            cpu: "2"
-            memory: "8Gi"
+            cpu: "1"
+            memory: "4Gi"
             nvidia.com/gpu: "1"
         volumeMounts:
           - name: model-volume
-            mountPath: /mnt/models
-            readOnly: true
+            mountPath: /root/.cache/huggingface
     volumes:
       - name: model-volume
         persistentVolumeClaim:
