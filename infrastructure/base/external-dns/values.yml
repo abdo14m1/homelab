@@ -10,5 +10,3 @@ env:
 sources:
   - gateway-httproute
   - gateway-tlsroute
-  - gateway-tcproute
-  - gateway-udproute
