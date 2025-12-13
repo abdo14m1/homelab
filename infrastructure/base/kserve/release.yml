@@ -35,13 +35,7 @@ spec:
         kind: HelmRepository
         name: kserve-charts
       interval: 1m
-  values:
-    kserve:
-      controller:
-        deploymentMode: RawDeployment
-        gateway:
-          ingressGateway:
-            enableGatewayApi: true
-            className: cilium
-            createGateway: true
-            kserveGateway: ai-models/kserve-ingress-gateway
+  valuesFrom:
+    - kind: ConfigMap
+      name: kserve-controller-values
+      valuesKey: values.yml

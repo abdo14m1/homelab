@@ -1,0 +1,9 @@
+kserve:
+  controller:
+    deploymentMode: Standard
+    gateway:
+      ingressGateway:
+        enableGatewayApi: true
+        className: cilium
+        createGateway: true
+      kserveGateway: kserve/kserve-ingress-gateway

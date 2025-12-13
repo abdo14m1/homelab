@@ -7,3 +7,8 @@ env:
       secretKeyRef:
         name: cloudflare-token
         key: cloudflare-dns-token
+sources:
+  - gateway-httproute
+  - gateway-tlsroute
+  - gateway-tcproute
+  - gateway-udproute

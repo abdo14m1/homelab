@@ -3,3 +3,9 @@ kind: Kustomization
 resources:
   - repo.yml
   - release.yml
+configMapGenerator:
+  - name: kserve-controller-values
+    files:
+      - values.yml
+configurations:
+  - kustomizeconfig.yml
