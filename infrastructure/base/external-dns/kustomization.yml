@@ -10,7 +10,7 @@ resources:
 configMapGenerator:
   - name: external-dns-values
     files:
-      - values.yaml=values.yml
+      - values.yml=values.yml
 
 configurations:
   - kustomizeconfig.yml
