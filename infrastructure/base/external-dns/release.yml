@@ -16,4 +16,4 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: external-dns-values
-      valuesKey: values.yml
+      valuesKey: values.yaml
