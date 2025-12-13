@@ -9,4 +9,3 @@ env:
         key: cloudflare-dns-token
 sources:
   - gateway-httproute
-  - gateway-tlsroute
