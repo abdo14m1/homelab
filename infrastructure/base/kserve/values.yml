@@ -2,8 +2,11 @@ kserve:
   controller:
     deploymentMode: Standard
     gateway:
+      domain: farag.tech
+      kserveGateway: kserve/kserve-ingress-gateway
+      domainTemplate: '{{ .Name }}-{{ .Namespace }}.{{ .IngressDomain }}'
+      urlScheme: https
       ingressGateway:
         enableGatewayApi: true
         className: cilium
         createGateway: true
-      kserveGateway: kserve/kserve-ingress-gateway
