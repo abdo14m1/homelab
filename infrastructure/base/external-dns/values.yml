@@ -10,8 +10,6 @@ env:
         key: cloudflare-dns-token
 sources:
   - gateway-httproute
-extraArgs:
-  - --gateway-namespace-all
 rbac:
   create: true
   additionalPermissions:
