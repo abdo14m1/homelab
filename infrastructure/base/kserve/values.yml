@@ -1,6 +1,7 @@
 kserve:
   controller:
     deploymentMode: Standard
+    disableIngressCreation: true
     gateway:
       domain: farag.tech
       kserveGateway: kube-system/main-gateway

@@ -5,6 +5,7 @@ metadata:
   namespace: kube-system
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
+    external-dns.alpha.kubernetes.io/hostname: "*.farag.tech"
 spec:
   gatewayClassName: cilium
   listeners:
