@@ -4,3 +4,10 @@ metadata:
   name: whisper-turbo
   labels:
     serving.kserve.io/enable-ingress: "false"
+spec:
+  predictor:
+    containers:
+      - name: kserve-container
+        env:
+          - name: WHISPER__COMPUTE_TYPE
+            value: "int8"
