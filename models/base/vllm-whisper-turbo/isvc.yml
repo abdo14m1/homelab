@@ -18,6 +18,8 @@ spec:
             value: "8000"
           - name: WHISPER__MODEL
             value: "Systran/faster-whisper-large-v3"
+          - name: WHISPER__COMPUTE_TYPE
+            value: "int8"
           - name: HUGGING_FACE_HUB_TOKEN
             valueFrom:
               secretKeyRef:
@@ -26,11 +28,11 @@ spec:
         resources:
           limits:
             cpu: "2"
-            memory: "6Gi"
+            memory: "10Gi"
             nvidia.com/gpu: "1"
           requests:
             cpu: "1"
-            memory: "4Gi"
+            memory: "8Gi"
             nvidia.com/gpu: "1"
         volumeMounts:
           - name: model-volume
