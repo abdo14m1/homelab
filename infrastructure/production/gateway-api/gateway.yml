@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: main-gateway
+  name: production-gateway
   namespace: kube-system
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
@@ -17,7 +17,7 @@ spec:
         mode: Terminate
         certificateRefs:
           - kind: Secret
-            name: main-gateway-tls
+            name: production-gateway-tls
       allowedRoutes:
         namespaces:
           from: All

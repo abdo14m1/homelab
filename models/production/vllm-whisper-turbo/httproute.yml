@@ -7,7 +7,7 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: whisper.farag.tech
 spec:
   parentRefs:
-    - name: main-gateway
+    - name: production-gateway
       namespace: kube-system
   hostnames:
     - whisper.farag.tech

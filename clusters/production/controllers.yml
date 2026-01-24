@@ -8,7 +8,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: "./infrastructure/main"
+  path: "./infrastructure/prod"
   prune: true
   timeout: 1m
   decryption:

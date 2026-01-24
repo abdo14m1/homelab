@@ -1,7 +1,7 @@
 provider:
   name: cloudflare
 policy: upsert-only
-txtOwnerId: "main-cluster"
+txtOwnerId: "production-cluster"
 env:
   - name: CF_API_TOKEN
     valueFrom:

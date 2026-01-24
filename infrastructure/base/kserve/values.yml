@@ -4,7 +4,7 @@ kserve:
     disableIngressCreation: true
     gateway:
       domain: farag.tech
-      kserveGateway: kube-system/main-gateway
+      kserveGateway: kube-system/production-gateway
       domainTemplate: '{{ .Name }}-{{ .Namespace }}.{{ .IngressDomain }}'
       urlScheme: https
       ingressGateway:
