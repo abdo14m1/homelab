@@ -5,12 +5,15 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
+  dependsOn:
+    - name: infrastructure-controllers
+    - name: apps
   sourceRef:
     kind: GitRepository
     name: flux-system
   path: "./models/production"
   prune: true
-  timeout: 1m
+  timeout: 5m
   decryption:
     provider: sops
     secretRef:

@@ -10,7 +10,16 @@ spec:
     name: flux-system
   path: "./infrastructure/production"
   prune: true
-  timeout: 1m
+  timeout: 5m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cilium-operator
+      namespace: kube-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cert-manager
+      namespace: cert-manager
   decryption:
     provider: sops
     secretRef:
