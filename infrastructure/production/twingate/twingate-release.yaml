@@ -17,4 +17,4 @@ spec:
   valuesFrom:
   - kind: Secret
     name: twingate-helm-values
-    valuesKey: values.yml
+    valuesKey: values.yaml

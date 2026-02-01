@@ -38,4 +38,4 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: kserve-controller-values
-      valuesKey: values.yml
+      valuesKey: values.yaml

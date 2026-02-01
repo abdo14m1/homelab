@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: twingate
 resources:
-  - ./secret.yml
+  - ./secret.yaml
   - ../../base/twingate
 patches:
-  - path: ./twingate-release.yml
+  - path: ./twingate-release.yaml
     target:
       kind: HelmRelease
       name: twingate

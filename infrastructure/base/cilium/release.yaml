@@ -19,4 +19,4 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: cilium-config
-      valuesKey: values.yml
+      valuesKey: values.yaml

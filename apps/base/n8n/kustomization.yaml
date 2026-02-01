@@ -1,4 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+metadata:
+  name: n8n
+  namespace: n8n
 resources:
-  - standard-install.yml
+- release.yaml
+- repo.yaml

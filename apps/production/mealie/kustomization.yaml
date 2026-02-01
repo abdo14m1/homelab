@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - ../../base/mealie
 patchesStrategicMerge:
-  - mealie-patch.yml
+  - mealie-patch.yaml

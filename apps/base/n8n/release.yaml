@@ -17,4 +17,4 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: n8n-values
-      valuesKey: values.yml
+      valuesKey: values.yaml
