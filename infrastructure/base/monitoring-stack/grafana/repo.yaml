@@ -1,5 +1,5 @@
 apiVersion: source.toolkit.flux.io/v1
-kind: HelmRepo
+kind: HelmRepository
 metadata:
   name: grafana
   namespace: monitoring
