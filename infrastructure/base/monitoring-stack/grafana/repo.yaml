@@ -2,7 +2,7 @@ apiVersion: source.toolkit.flux.io/v1
 kind: HelmRepo
 metadata:
   name: grafana
-  namespace: observability
+  namespace: monitoring
 spec:
   interval: 12h
   url: https://grafana.github.io/helm-charts

@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: victoriametrics
-  namespace: observability
+  namespace: monitoring
 spec:
   interval: 24h
   url: https://victoriametrics.github.io/helm-charts/
