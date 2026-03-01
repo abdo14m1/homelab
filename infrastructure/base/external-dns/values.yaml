@@ -9,6 +9,8 @@ env:
         name: cloudflare-token
         key: cloudflare-dns-token
 sources:
+  - ingress
+  - service
   - gateway-httproute
 rbac:
   create: true
