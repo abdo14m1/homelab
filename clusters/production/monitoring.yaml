@@ -11,7 +11,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: "./monitoring/production/monitoring-stack"
+  path: "./monitoring/production"
   prune: true
   timeout: 5m
   decryption:
