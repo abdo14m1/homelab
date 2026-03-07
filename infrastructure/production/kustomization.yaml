@@ -10,4 +10,4 @@ resources:
   - twingate
   - gateway-api
   - kserve
-  - monitoring-stack
+  - monitoring-controllers
