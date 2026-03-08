@@ -10,6 +10,8 @@ rollOutCiliumPods: true
 
 kubeProxyReplacement: true
 
+upgradeCompatibility: "1.18"
+
 # K3s-specific configuration for proper service handling
 k8sServiceHost: 192.168.1.44
 k8sServicePort: 6443
@@ -52,9 +54,6 @@ hubble:
 
 # This enables Cilium's built-in bare-metal load balancer.
 l2announcements:
-  enabled: true
-
-externalIPs:
   enabled: true
 
 k8sClientRateLimit:
