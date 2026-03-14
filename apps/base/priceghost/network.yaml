@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: priceghost-backend
+  name: backend
+  namespace: priceghost
+spec:
+  ports:
+    - port: 3001
+      protocol: TCP
+      targetPort: 3001
+  selector:
+    app: priceghost-backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: priceghost-frontend
+  name: priceghost
+  namespace: priceghost
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: priceghost-frontend
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: priceghost-route
+  namespace: priceghost
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: price.farag.tech
+spec:
+  parentRefs:
+    - name: production-gateway
+      namespace: kube-system
+  hostnames:
+    - price.farag.tech
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: priceghost
+          port: 80
