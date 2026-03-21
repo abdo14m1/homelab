@@ -11,5 +11,13 @@ env:
 sources:
   - ingress
   - service
+  - gateway-httproute
 rbac:
   create: true
+  additionalPermissions:
+    - apiGroups: [""]
+      resources: ["namespaces"]
+      verbs: ["get", "watch", "list"]
+    - apiGroups: ["gateway.networking.k8s.io"]
+      resources: ["gateways", "httproutes", "grpcroutes", "tlsroutes", "tcproutes", "udproutes"]
+      verbs: ["get", "watch", "list"]

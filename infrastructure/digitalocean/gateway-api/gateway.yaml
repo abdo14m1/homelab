@@ -1,0 +1,23 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: production-gateway
+  namespace: kube-system
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    external-dns.alpha.kubernetes.io/hostname: "*.farag.tech"
+spec:
+  gatewayClassName: cilium
+  listeners:
+    - name: https
+      protocol: HTTPS
+      port: 443
+      hostname: "*.farag.tech"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: production-gateway-tls
+      allowedRoutes:
+        namespaces:
+          from: All
