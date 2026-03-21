@@ -1,0 +1,15 @@
+provider:
+  name: cloudflare
+policy: upsert-only
+txtOwnerId: "digitalocean-cluster"
+env:
+  - name: CF_API_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: cloudflare-token
+        key: cloudflare-dns-token
+sources:
+  - ingress
+  - service
+rbac:
+  create: true
