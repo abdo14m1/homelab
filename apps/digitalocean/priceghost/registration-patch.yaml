@@ -39,7 +39,7 @@ spec:
               );
 
               INSERT INTO system_settings (key, value)
-              VALUES ('registration_enabled', 'true')
+              VALUES ('registration_enabled', 'false')
               ON CONFLICT (key) DO UPDATE
               SET value = EXCLUDED.value,
                   updated_at = CURRENT_TIMESTAMP;
