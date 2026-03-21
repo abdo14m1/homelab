@@ -1,0 +1,8 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: priceghost-db
+  namespace: priceghost
+spec:
+  storage:
+    storageClass: do-block-storage-retain
