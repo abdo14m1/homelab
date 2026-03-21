@@ -5,3 +5,4 @@ resources:
 patchesStrategicMerge:
   - database-patch.yaml
   - httproute-patch.yaml
+  - registration-patch.yaml
