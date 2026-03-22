@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: priceghost-frontend
+  name: priceghost-frontend
+  namespace: priceghost
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: priceghost-frontend
+  template:
+    metadata:
+      labels:
+        app: priceghost-frontend
+    spec:
+      containers:
+        - image: ghcr.io/abdo14m1/priceghost-frontend:2549118 # {"$imagepolicy": "flux-system:priceghost-frontend"}
+          name: priceghost-frontend
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi

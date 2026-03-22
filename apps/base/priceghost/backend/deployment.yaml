@@ -1,8 +1,3 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: priceghost
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,7 +16,7 @@ spec:
         app: priceghost-backend
     spec:
       containers:
-        - image: ghcr.io/clucraft/priceghost-backend:33b9445
+        - image: ghcr.io/abdo14m1/priceghost-backend:33b9445 # {"$imagepolicy": "flux-system:priceghost-backend"}
           name: priceghost-backend
           envFrom:
             - configMapRef:
@@ -46,33 +41,3 @@ spec:
             limits:
               cpu: 500m
               memory: 512Mi
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: priceghost-frontend
-  name: priceghost-frontend
-  namespace: priceghost
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: priceghost-frontend
-  template:
-    metadata:
-      labels:
-        app: priceghost-frontend
-    spec:
-      containers:
-        - image: ghcr.io/clucraft/priceghost-frontend:2549118
-          name: priceghost-frontend
-          ports:
-            - containerPort: 80
-          resources:
-            requests:
-              cpu: 100m
-              memory: 128Mi
-            limits:
-              cpu: 250m
-              memory: 256Mi

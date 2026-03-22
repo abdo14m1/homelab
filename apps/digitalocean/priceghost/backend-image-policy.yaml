@@ -1,0 +1,23 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: priceghost-backend
+  namespace: flux-system
+spec:
+  image: ghcr.io/abdo14m1/priceghost-backend
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: priceghost-backend
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: priceghost-backend
+  filterTags:
+    pattern: '^([0-9]{14})-[a-f0-9]+$'
+    extract: '$1'
+  policy:
+    numerical:
+      order: asc
