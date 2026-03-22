@@ -16,7 +16,7 @@ spec:
       author:
         email: fluxcdbot@farag.tech
         name: fluxcdbot
-      messageTemplate: "chore(priceghost): update images to {{range .Updated.Images}}{{.}}{{end}}"
+      messageTemplate: "chore(priceghost): update images to {{range .Changed.Images}}{{.}}{{end}}"
     push:
       branch: main
   update:
