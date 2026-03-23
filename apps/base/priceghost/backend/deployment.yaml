@@ -16,7 +16,7 @@ spec:
         app: priceghost-backend
     spec:
       containers:
-        - image: ghcr.io/abdo14m1/priceghost-backend:20260323212650-29c7374 # {"$imagepolicy": "flux-system:priceghost-backend"}
+        - image: ghcr.io/abdo14m1/priceghost-backend:20260323213609-3032e28 # {"$imagepolicy": "flux-system:priceghost-backend"}
           name: priceghost-backend
           envFrom:
             - configMapRef:
