@@ -16,7 +16,7 @@ spec:
         app: priceghost-frontend
     spec:
       containers:
-        - image: ghcr.io/abdo14m1/priceghost-frontend:20260323191834-46f6fc0 # {"$imagepolicy": "flux-system:priceghost-frontend"}
+        - image: ghcr.io/abdo14m1/priceghost-frontend:20260323202239-d9f3568 # {"$imagepolicy": "flux-system:priceghost-frontend"}
           name: priceghost-frontend
           ports:
             - containerPort: 80
