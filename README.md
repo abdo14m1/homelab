@@ -20,3 +20,7 @@ The cluster is configured with:
 ## What Works
 
 - GPU workloads can request and use the GTX 1650
+
+## Documentation
+
+- [Observability Plan](docs/observability-plan.md)
